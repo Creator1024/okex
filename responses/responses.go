@@ -7,7 +7,7 @@ import (
 
 type (
 	Basic struct {
-		Code int    `json:"code,string"`
+		Code string `json:"code"`
 		Msg  string `json:"msg,omitempty"`
 	}
 )
@@ -21,7 +21,7 @@ func (b *Basic) UnmarshalJSON(bf []byte) error {
 		return err
 	}
 	b = (*Basic)(&r)
-	if b.Code != 0 {
+	if b.Code != "0" {
 		return fmt.Errorf("recevied error:%+v", b)
 	}
 	return nil

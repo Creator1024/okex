@@ -41,8 +41,9 @@ func (c *Funding) GetCurrencies() (response responses.GetCurrencies, err error) 
 
 // GetAssetValuation
 // https://www.okx.com/docs-v5/zh/#rest-api-funding-get-account-asset-valuation
-func (c *Funding) GetAssetValuation(req requests.GetAssetValuation) (response responses.GetAssetValuation, err error) {
+func (c *Funding) GetAssetValuation() (response responses.GetAssetValuation, err error) {
 	p := "/api/v5/asset/asset-valuation"
+	var req requests.GetAssetValuation
 	req.Ccy = "USDT"
 	m := okex.S2M(req)
 	res, err := c.client.Do(http.MethodGet, p, true, m)
@@ -51,9 +52,10 @@ func (c *Funding) GetAssetValuation(req requests.GetAssetValuation) (response re
 	}
 	defer res.Body.Close()
 
-	d := json.NewDecoder(res.Body)
-	err = d.Decode(&response)
-
+	err = json.NewDecoder(res.Body).Decode(&response)
+	if err != nil {
+		panic(err)
+	}
 	return
 }
 
@@ -61,8 +63,9 @@ func (c *Funding) GetAssetValuation(req requests.GetAssetValuation) (response re
 // Retrieve the balances of all the assets, and the amount that is available or on hold.
 //
 // https://www.okex.com/docs-v5/en/#rest-api-funding-get-balance
-func (c *Funding) GetBalance(req requests.GetBalance) (response responses.GetBalance, err error) {
+func (c *Funding) GetBalance() (response responses.GetBalance, err error) {
 	p := "/api/v5/asset/balances"
+	var req requests.GetBalance
 	m := okex.S2M(req)
 	if len(req.Ccy) > 0 {
 		m["ccy"] = strings.Join(req.Ccy, ",")
