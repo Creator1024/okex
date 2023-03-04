@@ -2,9 +2,9 @@ package rest
 
 import (
 	"encoding/json"
-	"github.com/amir-the-h/okex"
-	requests "github.com/amir-the-h/okex/requests/rest/account"
-	responses "github.com/amir-the-h/okex/responses/account"
+	"github.com/Creator1024/okex"
+	requests "github.com/Creator1024/okex/requests/rest/account"
+	responses "github.com/Creator1024/okex/responses/account"
 	"net/http"
 	"strings"
 )
