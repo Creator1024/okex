@@ -10,6 +10,10 @@ type (
 		responses.Basic
 		Currencies []*models.Currency `json:"data"`
 	}
+	GetAssetValuation struct {
+		responses.Basic
+		AssetValuation []*models.AssetValuation `json:"data"`
+	}
 	GetBalance struct {
 		responses.Basic
 		Balances []*models.Balance `json:"data"`

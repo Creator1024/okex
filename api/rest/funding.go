@@ -27,8 +27,25 @@ func NewFunding(c *ClientRest) *Funding {
 // https://www.okex.com/docs-v5/en/#rest-api-funding-get-currencies
 func (c *Funding) GetCurrencies() (response responses.GetCurrencies, err error) {
 	p := "/api/v5/asset/currencies"
-
 	res, err := c.client.Do(http.MethodGet, p, true)
+	if err != nil {
+		return
+	}
+	defer res.Body.Close()
+
+	d := json.NewDecoder(res.Body)
+	err = d.Decode(&response)
+
+	return
+}
+
+// GetAssetValuation
+// https://www.okx.com/docs-v5/zh/#rest-api-funding-get-account-asset-valuation
+func (c *Funding) GetAssetValuation(req requests.GetAssetValuation) (response responses.GetAssetValuation, err error) {
+	p := "/api/v5/asset/asset-valuation"
+	req.Ccy = "USDT"
+	m := okex.S2M(req)
+	res, err := c.client.Do(http.MethodGet, p, true, m)
 	if err != nil {
 		return
 	}

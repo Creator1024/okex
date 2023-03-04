@@ -6,6 +6,9 @@ type (
 	GetBalance struct {
 		Ccy []string `json:"ccy,omitempty"`
 	}
+	GetAssetValuation struct {
+		Ccy string `json:"ccy,omitempty"`
+	}
 	FundsTransfer struct {
 		Ccy      string            `json:"ccy"`
 		Amt      float64           `json:"amt,string"`

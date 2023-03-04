@@ -14,6 +14,17 @@ type (
 		CanWd       bool   `json:"canWd"`
 		CanInternal bool   `json:"canInternal"`
 	}
+	AssetValuation struct {
+		TotalBal string `json:"totalBal"`
+		Ts       string `json:"ts"`
+		Details  struct {
+			Funding string `json:"funding"`
+			Trading string `json:"trading"`
+			Classic string `json:"classic"`
+			Earn    string `json:"earn"`
+		}
+	}
+
 	Balance struct {
 		Ccy       string `json:"ccy"`
 		Bal       string `json:"bal"`
