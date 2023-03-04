@@ -12,7 +12,7 @@ type (
 	}
 	GetAssetValuation struct {
 		responses.Basic
-		AssetValuation []*models.AssetValuation `json:"data"`
+		AssetValuation *models.AssetValuation `json:"data"`
 	}
 	GetBalance struct {
 		responses.Basic
